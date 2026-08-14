@@ -24,11 +24,15 @@ export function BottomPlayer() {
           step={0.1}
           value={currentTime}
           onChange={(event) => seek(Number(event.target.value))}
+          // La soppressione serve solo al trascinamento col puntatore: da
+          // tastiera ogni modifica è già discreta e passa da `seek`.
+          // `blur` e `pointercancel` sono le reti di sicurezza contro uno
+          // scrub che resta appeso e congela il tempo mostrato.
           onPointerDown={() => setScrubbing(true)}
           onPointerUp={() => setScrubbing(false)}
           onPointerCancel={() => setScrubbing(false)}
-          onKeyDown={() => setScrubbing(true)}
-          onKeyUp={() => setScrubbing(false)}
+          onLostPointerCapture={() => setScrubbing(false)}
+          onBlur={() => setScrubbing(false)}
         />
       </div>
 
@@ -50,6 +54,14 @@ export function BottomPlayer() {
       >
         {loading ? <SpinnerIcon /> : playing ? <PauseIcon /> : <PlayIcon />}
       </button>
+
+      {/*
+        Il player è su ogni pagina, ma il tempo che scorre non può stare in una
+        regione live: annuncerebbe di continuo. Qui va solo l'errore.
+      */}
+      <p className="sr-only" role="status">
+        {error}
+      </p>
     </aside>
   );
 }

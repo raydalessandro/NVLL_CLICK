@@ -116,7 +116,7 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  color: #6f716b;
+  color: var(--dim);
   font: 9px var(--mono);
   letter-spacing: 0.13em;
 }

@@ -120,6 +120,8 @@ export const tracks: Track[] = [
     id: "mezzi-immaginari",
     title: "Mezzi immaginari",
     version: "Master source / 2026",
+    // 7352 frame MPEG1 Layer III a 48 kHz = 176,448 s. Valore iniziale: il
+    // player lo sostituisce con quello letto dai metadati del file.
     duration: 176.448,
     audio: "/media/audio/mezzi-immaginari.mp3",
     cover: getVisual("v02").src,

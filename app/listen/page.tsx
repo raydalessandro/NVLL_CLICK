@@ -11,9 +11,13 @@ const relatedVisual = getVisual("v07");
 const WAVE = Array.from({ length: 44 }, (_, i) => 18 + ((i * 37) % 76));
 
 export default function ListenPage() {
-  const { playing, status, error, toggle, progress } = usePlayer();
+  const { playing, status, error, toggle, progress, duration } = usePlayer();
   const track = tracks[0];
   const loading = status === "loading";
+
+  // La durata reale del file vince su quella a catalogo: se il media dice
+  // altro, in pagina si legge il media.
+  const trackDuration = duration || track.duration;
 
   const playLabel = loading ? "CARICAMENTO" : playing ? "IN RIPRODUZIONE" : "ASCOLTA";
 
@@ -48,7 +52,7 @@ export default function ListenPage() {
           <div className="release-meta">
             <span>2026</span>
             <span>{tracks.length} BRANO</span>
-            <span>{formatTime(track.duration)}</span>
+            <span>{formatTime(trackDuration)}</span>
           </div>
           <button type="button" className="big-play" onClick={toggle} aria-busy={loading}>
             {loading ? <SpinnerIcon /> : playing ? <PauseIcon /> : <PlayIcon />}
@@ -86,7 +90,7 @@ export default function ListenPage() {
           <span>
             <i /> SOURCE
           </span>
-          <span>{formatTime(track.duration)}</span>
+          <span>{formatTime(trackDuration)}</span>
         </button>
 
         <div className="track-row locked" aria-disabled="true">

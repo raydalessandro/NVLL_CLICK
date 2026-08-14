@@ -109,7 +109,7 @@
   height: 38px;
   border-bottom: 1px solid var(--line);
   font: 8px var(--mono);
-  color: #686b64;
+  color: var(--dim);
   letter-spacing: 0.1em;
 }
 
@@ -142,7 +142,7 @@
 
 .track-row small {
   font: 9px var(--mono);
-  color: #72756d;
+  color: var(--dim);
 }
 
 .track-row > span:nth-child(3),

@@ -66,6 +66,24 @@ export default function SocialPage() {
     setTab(next);
   };
 
+  // `role="tab"` promette le frecce ai lettori di schermo: qui vengono mantenute,
+  // con tabindex mobile così il gruppo occupa una sola tappa di tabulazione.
+  const onTabKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const current = feedTabs.findIndex((entry) => entry.id === tab);
+    const last = feedTabs.length - 1;
+    let next = current;
+
+    if (event.key === "ArrowRight") next = current === last ? 0 : current + 1;
+    else if (event.key === "ArrowLeft") next = current === 0 ? last : current - 1;
+    else if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = last;
+    else return;
+
+    event.preventDefault();
+    selectTab(feedTabs[next].id);
+    event.currentTarget.querySelectorAll("button")[next]?.focus();
+  };
+
   return (
     <div className="social-page section-pad">
       <section className="social-profile">
@@ -118,7 +136,12 @@ export default function SocialPage() {
         ))}
       </section>
 
-      <div className="social-tabs" role="tablist" aria-label="Sezioni del profilo">
+      <div
+        className="social-tabs"
+        role="tablist"
+        aria-label="Sezioni del profilo"
+        onKeyDown={onTabKeyDown}
+      >
         {feedTabs.map((entry) => (
           <button
             type="button"
@@ -127,6 +150,7 @@ export default function SocialPage() {
             id={`tab-${entry.id}`}
             aria-selected={tab === entry.id}
             aria-controls="feed-panel"
+            tabIndex={tab === entry.id ? 0 : -1}
             className={tab === entry.id ? "active" : ""}
             onClick={() => selectTab(entry.id)}
           >

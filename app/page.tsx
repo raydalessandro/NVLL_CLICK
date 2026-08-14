@@ -74,7 +74,9 @@ export default function WorldPage() {
         </div>
       </section>
 
-      <section className="visual-ribbon" aria-label="Archivio visivo">
+      {/* Regione a scorrimento orizzontale senza figli focalizzabili: senza
+          tabIndex la tastiera non potrebbe scorrerla. */}
+      <section className="visual-ribbon" aria-label="Archivio visivo" tabIndex={0}>
         {ribbon.map((item, i) => (
           <figure key={item.id}>
             <Image src={item.src} alt={item.alt} fill sizes="(max-width: 700px) 70vw, 28vw" />

@@ -151,7 +151,7 @@
   border: 0;
   border-top: 1px solid transparent;
   background: none;
-  color: #656861;
+  color: var(--dim);
   font: 9px var(--mono);
   letter-spacing: 0.12em;
   cursor: pointer;
@@ -432,5 +432,5 @@
   margin-top: auto;
   padding-top: 20px;
   font: 8px var(--mono);
-  color: #777a72;
+  color: var(--dim);
 }

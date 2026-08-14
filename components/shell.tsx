@@ -21,6 +21,12 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="app-shell">
+      {/* Topbar e dock sono fissi: senza questo salto la tastiera li riattraversa
+          a ogni cambio pagina prima di arrivare al contenuto. */}
+      <a className="skip-link" href="#contenuto">
+        SALTA AL CONTENUTO
+      </a>
+
       <header className="topbar">
         {/* Lockup del brand: NVLL pesante, CLICK leggero, un solo punto verde. */}
         <Link href="/" className="brand" aria-label="NVLL CLICK home">
@@ -43,7 +49,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <main>{children}</main>
+      <main id="contenuto" tabIndex={-1}>
+        {children}
+      </main>
 
       <nav className="dock" aria-label="Navigazione principale">
         {navigation.map(({ href, label, icon: Icon }) => {

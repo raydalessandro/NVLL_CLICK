@@ -5,6 +5,12 @@
   --panel: #10110f;
   --paper: #d8d8cf;
   --muted: #85877f;
+  /*
+   * Grigio più arretrato di --muted, usato per gli elementi non attivi.
+   * È il valore più scuro che regge 4.5:1 su tutti i fondi dell'app
+   * (ink, #121410, #11120f): sotto questo si scende sotto WCAG AA.
+   */
+  --dim: #7d8078;
   --line: #2a2c28;
   --acid: #b8ff35;
 
@@ -68,6 +74,42 @@ svg {
 :focus-visible {
   outline: 2px solid var(--acid);
   outline-offset: 2px;
+}
+
+/* Il contenitore <main> riceve il focus solo via skip link, non col mouse. */
+main:focus {
+  outline: none;
+}
+
+/* Percepibile dai lettori di schermo, invisibile a schermo. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 60;
+  top: 0;
+  left: 0;
+  padding: 14px 18px;
+  background: var(--acid);
+  color: var(--ink);
+  font: 10px var(--mono);
+  letter-spacing: 0.14em;
+  transform: translateY(-140%);
+  transition: transform 0.15s;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 .section-pad {

@@ -35,6 +35,7 @@ export function PostModal({ post, liked, onToggleLike, onClose, onPrev, onNext }
 
   const open = post !== null;
   const note = post && shareNote?.postId === post.id ? shareNote.text : null;
+  const playingThisPost = playing && post?.kind === "track" && post.track.id === track.id;
 
   // Il <dialog> nativo porta con sé Esc, focus trap e inerzia dello sfondo:
   // chiudere non dipende dalla posizione del pulsante.
@@ -85,7 +86,9 @@ export function PostModal({ post, liked, onToggleLike, onClose, onPrev, onNext }
     <dialog
       ref={dialogRef}
       className="post-modal"
-      aria-label="Post NVLL CLICK"
+      // Etichetta legata al contenuto: aprendo più post di seguito il lettore
+      // di schermo annuncia quale, non sempre la stessa frase.
+      aria-label={post ? `Post: ${post.caption}` : "Post NVLL CLICK"}
       // Solo `close`: `cancel` (Esc) ha come azione predefinita la chiusura e
       // sfocia comunque in `close`. Gestirli entrambi chiuderebbe due volte.
       onClose={onClose}
@@ -110,8 +113,19 @@ export function PostModal({ post, liked, onToggleLike, onClose, onPrev, onNext }
           <div className="modal-media">
             <Image src={post.visual.src} alt={post.visual.alt} fill sizes="90vw" priority />
             {post.kind === "track" && (
-              <button type="button" className="modal-play" onClick={toggle}>
-                {playing ? <PauseIcon /> : <PlayIcon />}
+              // Lo stato "in riproduzione" vale solo se il player sta davvero
+              // suonando questo brano, non un altro del catalogo.
+              <button
+                type="button"
+                className="modal-play"
+                onClick={toggle}
+                aria-label={
+                  playingThisPost
+                    ? `Metti in pausa ${post.track.title}`
+                    : `Riproduci ${post.track.title}`
+                }
+              >
+                {playingThisPost ? <PauseIcon /> : <PlayIcon />}
                 <span>
                   {post.track.title} · {formatTime(post.track.duration)}
                 </span>
@@ -150,7 +164,7 @@ export function PostModal({ post, liked, onToggleLike, onClose, onPrev, onNext }
             </p>
             <small>
               {post.kind === "track"
-                ? `${track.version.toUpperCase()} · NESSUNA POSIZIONE`
+                ? `${post.track.version.toUpperCase()} · NESSUNA POSIZIONE`
                 : "ARCHIVIO 2026 · NESSUNA POSIZIONE"}
             </small>
           </div>

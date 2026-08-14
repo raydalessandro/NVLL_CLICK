@@ -79,8 +79,19 @@ Il lockup è **NVLL** in peso pesante, **CLICK** in peso leggero e un solo punto
 `NEXT_PUBLIC_SITE_URL` imposta il dominio pubblico usato dai metadati assoluti
 (vedi `.env.example`). Su Vercel viene dedotto in automatico se assente.
 
+## Accessibilità
+
+Le pagine passano axe-core su WCAG 2.1 AA senza violazioni. Il contrasto va misurato
+sui pixel resi: il velo di grana su `body::before` copre tutta l'app e sposta i valori
+rispetto al colore dichiarato in CSS. `--dim` è il grigio più scuro che regge 4.5:1
+su ogni fondo dell'app; sotto quello si esce da AA.
+
 ## Verifiche
 
 ```bash
 npm run check   # typecheck + lint + build
 ```
+
+Per i binari conviene un controllo a parte: confrontare dimensione e, per l'audio,
+i frame dichiarati nell'header Xing contro quelli realmente presenti. Un file troncato
+supera build, lint e typecheck senza segnalare nulla.

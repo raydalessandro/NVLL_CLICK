@@ -67,7 +67,13 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
     };
     const onError = () => {
       setStatus("error");
-      setError("Audio non disponibile. Verifica la connessione e riprova.");
+      // L'audio non viene mai messo in cache dal service worker: senza rete
+      // il motivo è quello, e vale la pena dirlo invece di dare la colpa al file.
+      setError(
+        typeof navigator !== "undefined" && !navigator.onLine
+          ? "Sei offline: l’ascolto richiede la connessione."
+          : "Audio non disponibile. Riprova tra poco.",
+      );
     };
 
     audio.addEventListener("timeupdate", onTime);
@@ -141,11 +147,22 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
     session.setActionHandler("seekto", (details) => {
       if (typeof details.seekTime === "number") seek(details.seekTime);
     });
+    // Salti rapidi dai comandi di sistema e dalle cuffie.
+    session.setActionHandler("seekbackward", (details) => {
+      const audio = audioRef.current;
+      if (audio) seek(audio.currentTime - (details.seekOffset ?? 10));
+    });
+    session.setActionHandler("seekforward", (details) => {
+      const audio = audioRef.current;
+      if (audio) seek(audio.currentTime + (details.seekOffset ?? 10));
+    });
 
     return () => {
       session.setActionHandler("play", null);
       session.setActionHandler("pause", null);
       session.setActionHandler("seekto", null);
+      session.setActionHandler("seekbackward", null);
+      session.setActionHandler("seekforward", null);
     };
   }, [track, seek]);
 

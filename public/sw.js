@@ -11,7 +11,7 @@
  * Alzare VERSION invalida tutte le cache precedenti.
  */
 
-const VERSION = "nvll-v2";
+const VERSION = "nvll-v3";
 const SHELL_CACHE = `${VERSION}-shell`;
 const ASSET_CACHE = `${VERSION}-assets`;
 
@@ -75,13 +75,30 @@ const isImage = (request, url) =>
 const isAudio = (request, url) =>
   request.destination === "audio" || url.pathname.startsWith("/media/audio/");
 
+/*
+ * Le immagini passano da /_next/image con query diverse per ogni larghezza:
+ * senza un tetto la cache crescerebbe a ogni build. La Cache API conserva
+ * l'ordine di inserimento, quindi si eliminano le voci più vecchie.
+ */
+const ASSET_CACHE_LIMIT = 160;
+
+async function trim(cacheName, limit) {
+  const cache = await caches.open(cacheName);
+  const keys = await cache.keys();
+  if (keys.length <= limit) return;
+  await Promise.all(keys.slice(0, keys.length - limit).map((key) => cache.delete(key)));
+}
+
 async function cacheFirst(request, cacheName) {
   const cache = await caches.open(cacheName);
   const cached = await cache.match(request);
   if (cached) return cached;
 
   const response = await fetch(request);
-  if (response.ok && response.type === "basic") await cache.put(request, response.clone());
+  if (response.ok && response.type === "basic") {
+    await cache.put(request, response.clone());
+    await trim(cacheName, ASSET_CACHE_LIMIT);
+  }
   return response;
 }
 
