@@ -5,6 +5,7 @@ Archivio sonoro e visivo in Next.js 16, installabile come PWA. Tre superfici con
 - `/social` — profilo e feed;
 - `/listen` — player e catalogo musicale;
 - `/merch` — capi allo stadio di render, nulla in vendita;
+- `/game` — WORLD 00, il gioco;
 - `/` — nucleo del sito/app NVLL CLICK.
 
 ## Avvio
@@ -45,20 +46,38 @@ app/
   listen/           release e player
   social/           profilo e feed
   merch/            render dei capi
+  game/             WORLD 00
   offline/          fallback del service worker
   manifest.ts       manifest PWA generato
   error.tsx  global-error.tsx  not-found.tsx
   globals.css       importa app/styles/*
   styles/           base, shell, player, world, social, listen, merch, mobile
 components/         shell, player, post-modal, icone
+  nvll-world/       motore del gioco (CSS Modules, stili non globali)
 lib/                catalogo, hook di storage e PWA
+e2e/                test Playwright
 public/
   icons/            icone PWA (generate)
   media/            visuals, audio, merch
   sw.js             service worker
 scripts/
   make-icons.mjs    rigenera le icone dal monogramma Ø
+  check-media.mjs   verifica l'integrità dei binari
 ```
+
+## WORLD 00
+
+Il gioco vive su `/game` e occupa lo schermo: la shell del sito si toglie di mezzo,
+quindi niente dock, niente player in basso e un solo `<main>` nel documento.
+Ci si entra dal tasto tondo al centro del dock, si esce col tasto **SELECT** della
+console o col link in alto. **START** è presente ma disattivato finché non avrà una funzione.
+
+L'audio è quello del sito: il gioco non apre un secondo elemento `<audio>`, così la
+Sound Room e `/listen` non possono suonare insieme e la musica prosegue passando
+da una superficie all'altra. Contenuti in `lib/nvll-world-content.ts`, asset in
+`public/game/`. Il salvataggio sta in `localStorage` sotto `nvll-click-world-00`;
+un salvataggio incoerente col mondo attuale viene scartato invece di piazzare il
+giocatore dentro un muro.
 
 ## Marchio
 
@@ -89,9 +108,15 @@ su ogni fondo dell'app; sotto quello si esce da AA.
 ## Verifiche
 
 ```bash
-npm run check   # typecheck + lint + build
+npm run check      # typecheck + lint + integrità media + build
+npm run test:e2e   # build + Playwright su mobile e desktop
 ```
 
-Per i binari conviene un controllo a parte: confrontare dimensione e, per l'audio,
-i frame dichiarati nell'header Xing contro quelli realmente presenti. Un file troncato
-supera build, lint e typecheck senza segnalare nulla.
+`check:media` confronta quanto ogni binario dichiara nel proprio header con quello
+che contiene davvero. Serve perché un file troncato supera build, lint e typecheck
+senza segnalare nulla: è già successo con il master del debutto.
+
+La suite `e2e/` copre chiusura del post, schede del feed, persistenza, player,
+merch senza controlli d'acquisto, WORLD 00, PWA offline e accessibilità
+(axe-core su WCAG 2.1 AA, zero violazioni ammesse). Gira in CI su ogni push e
+pull request tramite `.github/workflows/ci.yml`.

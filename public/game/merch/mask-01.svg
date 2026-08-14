@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" shape-rendering="crispEdges">
+  <rect width="640" height="640" fill="#080b09"/>
+  <path d="M120 0h2v640h-2zm80 0h1v640h-1zm80 0h2v640h-2zm80 0h1v640h-1zm80 0h2v640h-2zm80 0h1v640h-1z" fill="#313832"/>
+  <path d="M0 120h640v2H0zm0 100h640v1H0zm0 100h640v2H0zm0 100h640v1H0zm0 100h640v2H0z" fill="#313832"/>
+  <path d="M229 89c23-26 56-40 91-40s68 14 91 40c39 44 56 117 56 212v252c-93 42-201 42-294 0V301c0-95 17-168 56-212Z" fill="#171b18" stroke="#d9dfd9" stroke-width="6"/>
+  <path d="M220 236c65-43 135-43 200 0v70c-65 27-135 27-200 0Z" fill="#090b0a" stroke="#4b534c" stroke-width="5"/>
+  <path d="M248 262h54M338 262h54" stroke="#c8ff35" stroke-width="6"/>
+  <g fill="#343a35"><path d="M204 133h232v4H204zM191 180h258v3H191zM179 350h282v4H179zM177 401h286v3H177zM178 452h284v4H178z"/></g>
+  <text x="320" y="497" fill="#dfe5df" font-family="Arial Black,Arial" font-size="30" text-anchor="middle" letter-spacing="6">NVLL</text>
+</svg>

@@ -98,6 +98,14 @@ export const ChevronRightIcon = (p: IconProps) => (
   </svg>
 );
 
+/** Marchio ridotto: la Ø del brand, la stessa delle icone PWA. */
+export const MonogramIcon = (p: IconProps) => (
+  <svg {...base} {...p} strokeWidth={2}>
+    <ellipse cx="12" cy="12" rx="5.4" ry="8" />
+    <path d="M5.6 18.2 18.4 5.8" />
+  </svg>
+);
+
 export const MerchIcon = (p: IconProps) => (
   <svg {...base} {...p}>
     <path d="M9 4 4 6.5 5.5 10 8 9v11h8V9l2.5 1L20 6.5 15 4a3 3 0 0 1-6 0Z" />

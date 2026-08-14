@@ -7,3 +7,9 @@ out/
 .DS_Store
 .env*
 !.env.example
+
+# Playwright
+/test-results
+/playwright-report
+/blob-report
+/playwright/.cache

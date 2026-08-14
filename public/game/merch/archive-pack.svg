@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" shape-rendering="crispEdges">
+  <rect width="640" height="640" fill="#090c0a"/>
+  <path d="m0 470 640-210v380H0Z" fill="#171d18"/>
+  <path d="M75 208h382v244H75Z" fill="#d8ddd7" stroke="#111511" stroke-width="8" transform="rotate(-8 266 330)"/>
+  <path d="M112 248h308v164H112Z" fill="#121613" transform="rotate(-8 266 330)"/>
+  <circle cx="218" cy="323" r="45" fill="none" stroke="#5c655e" stroke-width="15" transform="rotate(-8 266 330)"/>
+  <circle cx="324" cy="308" r="45" fill="none" stroke="#5c655e" stroke-width="15" transform="rotate(-8 266 330)"/>
+  <path d="M215 373h112" stroke="#c8ff35" stroke-width="9" transform="rotate(-8 266 330)"/>
+  <path d="m402 163 139 42-37 122-139-42Z" fill="#c8ff35" stroke="#0b0e0c" stroke-width="7"/>
+  <text x="453" y="242" fill="#111511" font-family="Arial Black,Arial" font-size="25" text-anchor="middle" transform="rotate(17 453 242)">00</text>
+  <path d="m383 403 155 0 0 102-155 0Z" fill="#222824" stroke="#d8ddd7" stroke-width="5"/>
+  <text x="460" y="445" fill="#d8ddd7" font-family="monospace" font-size="15" text-anchor="middle" letter-spacing="4">NVLL</text>
+  <text x="460" y="470" fill="#c8ff35" font-family="monospace" font-size="11" text-anchor="middle">ARCHIVE PACK</text>
+</svg>

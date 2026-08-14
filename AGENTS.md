@@ -10,12 +10,14 @@
 8. Nessun controllo finto: se un elemento è visibile e sembra cliccabile, deve fare qualcosa o dichiararsi disabilitato.
 9. Gli stili vivono in `app/styles/` divisi per superficie, non minificati. `globals.css` si limita agli import.
 10. Toccando `public/sw.js` va alzata `VERSION`, altrimenti i client restano su cache vecchie.
-11. Prima di consegnare: `npm run check` (typecheck + lint + build) deve passare pulito.
+11. Prima di consegnare: `npm run check` (typecheck + lint + integrità media + build) e `npm run test:e2e` devono passare puliti.
 12. Il lockup è NVLL pesante + CLICK leggero + un punto verde; il marchio ridotto è Ø. Non invertire i pesi.
 13. Il merch resta dichiarato come render finché non esistono fornitore e pagamento: niente prezzi, taglie o pulsanti d'acquisto.
 14. Un binario copiato da Drive va verificato contro la sorgente prima del commit: dimensione, e per l'audio i frame dichiarati dall'header contro quelli presenti. Un file troncato passa build, lint e test senza rumore.
 15. Il testo sta a 4.5:1 di contrasto. Sopra tutta l'app c'è un velo di grana, quindi il contrasto va misurato sui pixel resi, non sui valori esadecimali. `--dim` è il grigio più scuro ammesso.
 16. Se un elemento porta `role="tab"`, le frecce devono funzionare davvero: promettere semantica e non implementarla è peggio di un pulsante normale.
+17. Un solo elemento `<audio>` in pagina. Le superfici che suonano passano dal player globale, mai da una seconda sorgente sullo stesso file.
+18. Si lavora su branch con pull request. La CI (typecheck, lint, integrità media, build, Playwright) deve essere verde prima del merge.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
