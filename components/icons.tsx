@@ -98,6 +98,12 @@ export const ChevronRightIcon = (p: IconProps) => (
   </svg>
 );
 
+export const MerchIcon = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <path d="M9 4 4 6.5 5.5 10 8 9v11h8V9l2.5 1L20 6.5 15 4a3 3 0 0 1-6 0Z" />
+  </svg>
+);
+
 export const InstallIcon = (p: IconProps) => (
   <svg {...base} {...p}>
     <path d="M12 3v12" />

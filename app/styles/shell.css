@@ -21,18 +21,29 @@
   backdrop-filter: blur(16px);
 }
 
+/* Lockup: NVLL pesante, CLICK leggero, punto acido. Vedi il brand sheet. */
 .brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
   font-size: 18px;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.06em;
+}
+
+.brand b {
+  font-weight: 900;
 }
 
 .brand span {
   font-weight: 300;
 }
 
-.brand b {
-  font-weight: 900;
-  margin-left: 3px;
+.brand i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--acid);
+  box-shadow: 0 0 8px rgba(184, 255, 53, 0.55);
 }
 
 .topbar-end {
@@ -92,14 +103,14 @@
   padding-bottom: var(--safe-bottom);
   display: flex;
   justify-content: center;
-  gap: clamp(32px, 10vw, 120px);
+  gap: clamp(16px, 6vw, 90px);
   background: rgba(7, 8, 6, 0.94);
   border-top: 1px solid var(--line);
   backdrop-filter: blur(18px);
 }
 
 .dock a {
-  min-width: 64px;
+  min-width: 58px;
   display: flex;
   flex-direction: column;
   align-items: center;

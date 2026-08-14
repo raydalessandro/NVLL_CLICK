@@ -11,7 +11,7 @@
  * Alzare VERSION invalida tutte le cache precedenti.
  */
 
-const VERSION = "nvll-v1";
+const VERSION = "nvll-v2";
 const SHELL_CACHE = `${VERSION}-shell`;
 const ASSET_CACHE = `${VERSION}-assets`;
 
@@ -21,6 +21,7 @@ const PRECACHE = [
   "/",
   "/listen",
   "/social",
+  "/merch",
   OFFLINE_URL,
   "/icons/icon-192.png",
   "/icons/icon-512.png",
@@ -67,7 +68,9 @@ const isImmutableAsset = (url) =>
   url.pathname.startsWith("/_next/static/") || url.pathname.startsWith("/icons/");
 
 const isImage = (request, url) =>
-  request.destination === "image" || url.pathname.startsWith("/media/visuals/");
+  request.destination === "image" ||
+  url.pathname.startsWith("/media/visuals/") ||
+  url.pathname.startsWith("/media/merch/");
 
 const isAudio = (request, url) =>
   request.destination === "audio" || url.pathname.startsWith("/media/audio/");

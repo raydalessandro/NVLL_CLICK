@@ -29,9 +29,11 @@ export default function ListenPage() {
             sizes="(max-width: 700px) 82vw, 420px"
           />
           <div className="cover-stamp">
-            NVLL
-            <br />
-            CLICK
+            <b>NVLL</b>
+            <span>
+              CLICK
+              <i aria-hidden="true" />
+            </span>
           </div>
         </div>
 

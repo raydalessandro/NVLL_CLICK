@@ -22,6 +22,15 @@ export type Visual = {
   caption: string;
 };
 
+export type MerchItem = {
+  id: string;
+  /** Descrizione del capo, non un nome commerciale: i nomi non esistono ancora. */
+  name: string;
+  detail: string;
+  src: string;
+  alt: string;
+};
+
 export const site = {
   name: "NVLL CLICK",
   shortName: "NVLL CLICK",
@@ -140,6 +149,60 @@ export const posts: Post[] = [
     visual: getVisual("v02"),
     caption: `${track.title} · ${track.version}`,
   })),
+];
+
+/**
+ * Merchandising: sei render di studio, non fotografie di capi prodotti.
+ * Provengono dalla cartella Drive legacy MERCH, ritagliati per togliere il
+ * watermark del generatore. Niente prezzi, taglie o disponibilità: finché non
+ * c'è un fornitore e un pagamento, qui non si dichiara nulla di vendibile.
+ *
+ * Il capo "ERROR 404" della stessa serie resta fuori: verde matrix sul
+ * cappuccio, in contrasto con la regola 5 (niente cyberpunk né neon).
+ */
+export const merch: MerchItem[] = [
+  {
+    id: "m01",
+    name: "Manica lunga · logo petto",
+    detail: "Lockup piccolo sul petto, NULL stampato sul polsino.",
+    src: "/media/merch/MRC_01_LONGSLEEVE_CHEST.webp",
+    alt: "Felpa a manica lunga nera con lockup NVLL CLICK sul petto",
+  },
+  {
+    id: "m02",
+    name: "T-shirt · lockup",
+    detail: "Lockup grande sul fronte, NVLL sotto il collo.",
+    src: "/media/merch/MRC_02_TEE_LOCKUP.webp",
+    alt: "T-shirt nera con lockup NVLL CLICK grande sul fronte",
+  },
+  {
+    id: "m03",
+    name: "T-shirt · pattern",
+    detail: "Retro occupato da un blocco tipografico ripetuto.",
+    src: "/media/merch/MRC_03_TEE_PATTERN_BACK.webp",
+    alt: "Retro di t-shirt nera con la parola PATTERN ripetuta a griglia",
+  },
+  {
+    id: "m04",
+    name: "Felpa · monogramma Ø",
+    detail: "Ø nero su nero, lockup sotto e monogramma sul polsino.",
+    src: "/media/merch/MRC_04_HOODIE_MONOGRAM.webp",
+    alt: "Felpa con cappuccio nera con grande monogramma Ø nero su nero",
+  },
+  {
+    id: "m05",
+    name: "T-shirt · codice",
+    detail: "Sequenza binaria sulla manica, lockup piccolo sul fondo.",
+    src: "/media/merch/MRC_05_TEE_CODE_SLEEVE.webp",
+    alt: "T-shirt nera con sequenza binaria stampata sulla manica",
+  },
+  {
+    id: "m06",
+    name: "Felpa · particelle",
+    detail: "Retro con una nuvola di lettere che si disperde.",
+    src: "/media/merch/MRC_06_HOODIE_PARTICLE_BACK.webp",
+    alt: "Retro di felpa nera con nuvola di lettere disperse",
+  },
 ];
 
 export type FeedTab = "griglia" | "tracce" | "archivio";

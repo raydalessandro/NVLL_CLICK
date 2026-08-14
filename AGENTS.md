@@ -11,6 +11,8 @@
 9. Gli stili vivono in `app/styles/` divisi per superficie, non minificati. `globals.css` si limita agli import.
 10. Toccando `public/sw.js` va alzata `VERSION`, altrimenti i client restano su cache vecchie.
 11. Prima di consegnare: `npm run check` (typecheck + lint + build) deve passare pulito.
+12. Il lockup è NVLL pesante + CLICK leggero + un punto verde; il marchio ridotto è Ø. Non invertire i pesi.
+13. Il merch resta dichiarato come render finché non esistono fornitore e pagamento: niente prezzi, taglie o pulsanti d'acquisto.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

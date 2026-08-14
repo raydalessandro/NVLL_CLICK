@@ -26,10 +26,29 @@
   position: absolute;
   left: 16px;
   bottom: 14px;
-  font-weight: 900;
   font-size: clamp(32px, 5vw, 58px);
   line-height: 0.72;
-  letter-spacing: -0.09em;
+  letter-spacing: -0.07em;
+}
+
+.cover-stamp b {
+  display: block;
+  font-weight: 900;
+}
+
+.cover-stamp span {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-weight: 300;
+}
+
+.cover-stamp i {
+  width: 0.14em;
+  height: 0.14em;
+  border-radius: 50%;
+  background: var(--acid);
+  box-shadow: 0 0 10px rgba(184, 255, 53, 0.5);
 }
 
 .release-copy {

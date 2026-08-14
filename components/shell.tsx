@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { GridIcon, InstallIcon, SoundIcon, WorldIcon } from "@/components/icons";
+import { GridIcon, InstallIcon, MerchIcon, SoundIcon, WorldIcon } from "@/components/icons";
 import { useInstallPrompt, useOnline, useServiceWorker } from "@/lib/use-pwa";
 
 const navigation = [
   { href: "/social", label: "FEED", icon: GridIcon },
   { href: "/listen", label: "LISTEN", icon: SoundIcon },
+  { href: "/merch", label: "MERCH", icon: MerchIcon },
   { href: "/", label: "WORLD", icon: WorldIcon },
 ];
 
@@ -21,9 +22,11 @@ export function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="app-shell">
       <header className="topbar">
+        {/* Lockup del brand: NVLL pesante, CLICK leggero, un solo punto verde. */}
         <Link href="/" className="brand" aria-label="NVLL CLICK home">
-          <span>NVLL</span>
-          <b>CLICK</b>
+          <b>NVLL</b>
+          <span>CLICK</span>
+          <i aria-hidden="true" />
         </Link>
 
         <div className="topbar-end">

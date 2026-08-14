@@ -1,0 +1,110 @@
+/* Superficie "/merch" — capi allo stadio di render, nulla in vendita. */
+
+.merch-head {
+  padding-top: 70px;
+  padding-bottom: 34px;
+}
+
+.merch-head h1 {
+  font-size: clamp(58px, 10vw, 128px);
+  line-height: 0.78;
+  letter-spacing: -0.09em;
+  margin: 18px 0 26px;
+}
+
+.merch-head p {
+  max-width: 540px;
+  color: #a8aaa2;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Il capo non è acquistabile: l'avviso deve leggersi prima della griglia. */
+.merch-notice {
+  max-width: 720px;
+  margin: 0 0 46px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font: 10px/1.9 var(--mono);
+  letter-spacing: 0.07em;
+}
+
+.merch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 3vw, 34px);
+  padding-bottom: 80px;
+}
+
+.merch-grid article {
+  margin: 0;
+  min-width: 0;
+}
+
+.merch-shot {
+  position: relative;
+  aspect-ratio: 1024 / 936;
+  overflow: hidden;
+  background: #141612;
+  border: 1px solid var(--line);
+}
+
+.merch-shot img {
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.merch-grid article:hover .merch-shot img {
+  transform: scale(1.03);
+}
+
+.merch-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 7px;
+  background: #080908cc;
+  color: var(--acid);
+  font: 8px var(--mono);
+  letter-spacing: 0.14em;
+}
+
+.merch-grid h2 {
+  margin: 16px 0 7px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.merch-grid article p {
+  margin: 0;
+  color: var(--muted);
+  font: 10px/1.8 var(--mono);
+  letter-spacing: 0.04em;
+}
+
+.merch-foot {
+  padding-top: 60px;
+  padding-bottom: 100px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 26px;
+}
+
+.merch-foot p {
+  max-width: 520px;
+  margin: 0;
+  color: #a7a9a1;
+  line-height: 1.8;
+}
+
+@media (max-width: 1100px) {
+  .merch-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,9 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
   <rect width="512" height="512" fill="#070806"/>
-  <g stroke="#2a2c28" stroke-width="2.048" opacity="0.85"><line x1="64" y1="0" x2="64" y2="512"/><line x1="0" y1="64" x2="512" y2="64"/><line x1="128" y1="0" x2="128" y2="512"/><line x1="0" y1="128" x2="512" y2="128"/><line x1="192" y1="0" x2="192" y2="512"/><line x1="0" y1="192" x2="512" y2="192"/><line x1="256" y1="0" x2="256" y2="512"/><line x1="0" y1="256" x2="512" y2="256"/><line x1="320" y1="0" x2="320" y2="512"/><line x1="0" y1="320" x2="512" y2="320"/><line x1="384" y1="0" x2="384" y2="512"/><line x1="0" y1="384" x2="512" y2="384"/><line x1="448" y1="0" x2="448" y2="512"/><line x1="0" y1="448" x2="512" y2="448"/></g>
-  <rect x="81.92" y="81.92" width="348.15999999999997" height="348.15999999999997"
-        fill="none" stroke="#d8d8cf" stroke-width="9.216"/>
-  <path d="M81.92 297.7792 L430.08 179.40480000000002"
-        stroke="#d8d8cf" stroke-width="9.216" opacity="0.55"/>
-  <circle cx="256" cy="297.7792" r="28.16" fill="#b8ff35"/>
+  <ellipse cx="256" cy="256" rx="88.4736" ry="131.072"
+           fill="none" stroke="#d8d8cf" stroke-width="34.4064"/>
+  <line x1="137.44537599999998" y1="368.72192" x2="374.554624" y2="143.27808"
+        stroke="#d8d8cf" stroke-width="34.4064" stroke-linecap="butt"/>
+  <circle cx="392.15104" cy="378.945536" r="20.31616" fill="#b8ff35"/>
 </svg>
