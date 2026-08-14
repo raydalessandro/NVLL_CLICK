@@ -1,7 +1,8 @@
 import { NvllWorldGame } from "@/components/nvll-world/NvllWorldGame";
 
 export const metadata = {
-  title: "WORLD 00 — NVLL CLICK",
+  // Il layout radice aggiunge già "— NVLL CLICK" dal template.
+  title: "WORLD 00",
   description: "Esplora Monzoro, entra in NVLL SUPPLY e ascolta NVLL CLICK.",
 };
 
