@@ -1,0 +1,436 @@
+/* Superficie "/social" — profilo, griglia, post aperto. */
+
+.social-page {
+  max-width: 980px;
+  margin: auto;
+  padding-top: 58px;
+}
+
+.social-profile {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.avatar {
+  position: relative;
+  width: 136px;
+  height: 136px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #42453d;
+  padding: 4px;
+}
+
+.avatar::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 5px;
+  border-radius: 50%;
+  border: 1px solid var(--acid);
+  opacity: 0.5;
+}
+
+.avatar img {
+  object-fit: cover;
+}
+
+.profile-main {
+  min-width: 0;
+}
+
+.handle-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.handle-row h1 {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.handle-row button {
+  background: #272a25;
+  border: 1px solid #3b3e37;
+  padding: 8px 16px;
+  font: 9px var(--mono);
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.handle-row button:not(.following) {
+  background: var(--acid);
+  border-color: var(--acid);
+  color: var(--ink);
+}
+
+.stats {
+  display: flex;
+  gap: 32px;
+  margin: 22px 0;
+  font-size: 13px;
+}
+
+.stats b {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+.profile-main h2 {
+  font-size: 13px;
+  margin: 0 0 6px;
+}
+
+.profile-main p {
+  font-size: 13px;
+  color: #b4b6ae;
+  max-width: 500px;
+  line-height: 1.5;
+  margin: 0 0 5px;
+}
+
+.profile-main small {
+  font: 9px var(--mono);
+  color: var(--acid);
+}
+
+.stories {
+  display: flex;
+  gap: 26px;
+  padding: 48px 8px 30px;
+  overflow-x: auto;
+}
+
+.stories button {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: 8px var(--mono);
+  letter-spacing: 0.08em;
+}
+
+.story-ring {
+  position: relative;
+  display: block;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #464940;
+  outline: 1px solid var(--acid);
+  outline-offset: 3px;
+}
+
+.story-ring img {
+  object-fit: cover;
+}
+
+.social-tabs {
+  height: 50px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: center;
+  gap: 56px;
+}
+
+.social-tabs button {
+  height: 100%;
+  padding: 0 4px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-top: 1px solid transparent;
+  background: none;
+  color: #656861;
+  font: 9px var(--mono);
+  letter-spacing: 0.12em;
+  cursor: pointer;
+}
+
+.social-tabs button.active {
+  color: var(--paper);
+  border-top-color: var(--acid);
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.post-grid > button {
+  position: relative;
+  aspect-ratio: 1;
+  border: 0;
+  padding: 0;
+  background: #141612;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.post-grid img {
+  object-fit: cover;
+  filter: grayscale(0.15);
+  transition: transform 0.5s, filter 0.4s;
+}
+
+.post-grid button:hover img {
+  transform: scale(1.035);
+  filter: grayscale(0);
+}
+
+.post-grid > button > span {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font: 8px var(--mono);
+  background: #080908aa;
+  padding: 4px;
+}
+
+.grid-like {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--acid);
+}
+
+.grid-like svg {
+  fill: currentColor;
+}
+
+.post-grid .type-post {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 14px;
+  text-align: left;
+  background:
+    radial-gradient(circle at 75% 25%, rgba(184, 255, 53, 0.16), transparent 10%),
+    repeating-linear-gradient(0deg, #10120f 0, #10120f 29px, #282b2510 30px);
+}
+
+.type-post strong {
+  font-size: clamp(18px, 4vw, 40px);
+  letter-spacing: -0.07em;
+  line-height: 0.8;
+}
+
+.type-post strong span {
+  display: block;
+  position: static;
+  padding: 0;
+  background: none;
+  font: inherit;
+}
+
+.type-post i {
+  font: 8px var(--mono);
+  color: var(--acid);
+  margin-top: 10px;
+}
+
+/* --- Post aperto -------------------------------------------------------- */
+
+.post-modal {
+  inset: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  padding: 20px;
+  border: 0;
+  background: transparent;
+  color: var(--paper);
+  overflow: hidden;
+}
+
+/* Solo lo stato aperto diventa griglia: `dialog:not([open])` deve restare nascosto. */
+.post-modal[open] {
+  display: grid;
+  place-items: center;
+}
+
+.post-modal::backdrop {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.post-modal article {
+  display: grid;
+  grid-template-areas:
+    "media bar"
+    "media copy";
+  grid-template-columns: minmax(0, 1.45fr) minmax(290px, 0.55fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  width: min(1040px, 94vw);
+  height: min(700px, 84dvh);
+  background: #11120f;
+  border: 1px solid #30332d;
+  overflow: hidden;
+}
+
+.modal-bar {
+  grid-area: bar;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+
+.modal-bar b {
+  margin-right: auto;
+}
+
+.mini-avatar {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+.mini-avatar img {
+  object-fit: cover;
+}
+
+.modal-close {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  border-color: var(--acid);
+  color: var(--acid);
+}
+
+.modal-media {
+  grid-area: media;
+  position: relative;
+  min-height: 0;
+  background: #050605;
+}
+
+.modal-media img {
+  object-fit: contain;
+}
+
+.modal-play {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100% - 32px);
+  padding: 12px 18px;
+  border: 0;
+  background: var(--acid);
+  color: #10120d;
+  font: 9px var(--mono);
+  letter-spacing: 0.12em;
+  cursor: pointer;
+}
+
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: rgba(7, 8, 6, 0.72);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.modal-nav:hover {
+  border-color: var(--acid);
+  color: var(--acid);
+}
+
+.modal-nav.prev {
+  left: 10px;
+}
+
+.modal-nav.next {
+  right: 10px;
+}
+
+.modal-copy {
+  grid-area: copy;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 18px;
+  overflow-y: auto;
+}
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
+}
+
+.post-actions button {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.post-actions button.liked {
+  color: var(--acid);
+}
+
+.post-actions button.liked svg {
+  fill: currentColor;
+}
+
+.share-note {
+  font: 8px var(--mono);
+  letter-spacing: 0.1em;
+  color: var(--acid);
+}
+
+.modal-copy > p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.modal-copy > p b {
+  margin-right: 5px;
+}
+
+.modal-copy > small {
+  margin-top: auto;
+  padding-top: 20px;
+  font: 8px var(--mono);
+  color: #777a72;
+}

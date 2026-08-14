@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "icons": "node scripts/make-icons.mjs",
+    "check": "npm run typecheck && npm run lint && npm run build"
   },
   "dependencies": {
     "next": "^16.0.0",
@@ -20,6 +22,7 @@
     "@types/react-dom": "^19.2.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.0.0",
+    "sharp": "^0.35.3",
     "typescript": "^5.9.0"
   }
 }

@@ -6,6 +6,11 @@
 4. Social, listen e world devono consumare gli stessi oggetti catalogo.
 5. L'identità visiva canonica usa nero, cemento, grafite, piani geometrici e un solo segnale verde. Evitare cyberpunk, neon decorativo e gangster cliché.
 6. Ogni nuova superficie deve restare mobile-first e funzionare come export/deploy Vercel.
+7. Uno stato vuoto esplicito è sempre preferibile a un contenuto inventato per riempire la UI.
+8. Nessun controllo finto: se un elemento è visibile e sembra cliccabile, deve fare qualcosa o dichiararsi disabilitato.
+9. Gli stili vivono in `app/styles/` divisi per superficie, non minificati. `globals.css` si limita agli import.
+10. Toccando `public/sw.js` va alzata `VERSION`, altrimenti i client restano su cache vecchie.
+11. Prima di consegnare: `npm run check` (typecheck + lint + build) deve passare pulito.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

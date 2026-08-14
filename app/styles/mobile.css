@@ -1,0 +1,211 @@
+/* Adattamenti mobile. Tutto il resto è già mobile-first o fluido. */
+
+@media (max-width: 720px) {
+  :root {
+    --topbar-h: 56px;
+    --player-h: 66px;
+    --dock-h: 62px;
+  }
+
+  /* WORLD */
+  .world-hero {
+    height: 75vh;
+    min-height: 610px;
+    padding: 26px 20px;
+  }
+
+  .world-hero h1 {
+    font-size: 64px;
+  }
+
+  .world-hero p {
+    font-size: 13px;
+  }
+
+  .coordinate {
+    display: none;
+  }
+
+  .module-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .module-strip article {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 18px 20px;
+  }
+
+  .world-editorial {
+    grid-template-columns: 1fr;
+    padding-top: 75px;
+    padding-bottom: 75px;
+  }
+
+  .editorial-copy {
+    padding-top: 5px;
+  }
+
+  /* SOCIAL */
+  .social-page {
+    padding-top: 30px;
+  }
+
+  .social-profile {
+    grid-template-columns: 82px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .avatar {
+    width: 78px;
+    height: 78px;
+  }
+
+  .handle-row {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .handle-row h1 {
+    font-size: 15px;
+  }
+
+  .handle-row button {
+    padding: 6px 9px;
+  }
+
+  .handle-more {
+    display: none;
+  }
+
+  .stats {
+    gap: 13px;
+    margin: 14px 0;
+    font-size: 10px;
+  }
+
+  .profile-main h2,
+  .profile-main p {
+    font-size: 11px;
+  }
+
+  .stories {
+    gap: 20px;
+    padding-top: 34px;
+  }
+
+  .story-ring {
+    width: 61px;
+    height: 61px;
+  }
+
+  .social-tabs {
+    gap: 30px;
+  }
+
+  .post-grid {
+    gap: 2px;
+    margin-left: -18px;
+    margin-right: -18px;
+  }
+
+  /* A schermo pieno: la barra con il tasto di chiusura resta sempre in alto. */
+  .post-modal {
+    padding: 0;
+  }
+
+  .post-modal article {
+    width: 100vw;
+    height: 100dvh;
+    border: 0;
+    padding-top: var(--safe-top);
+    padding-bottom: var(--safe-bottom);
+    grid-template-areas:
+      "bar"
+      "media"
+      "copy";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .modal-copy {
+    padding: 14px;
+    max-height: 38dvh;
+  }
+
+  .modal-copy > small {
+    margin-top: 12px;
+    padding-top: 0;
+  }
+
+  .modal-nav {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* LISTEN */
+  .release-hero {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding-top: 35px;
+  }
+
+  .release-cover {
+    width: 82vw;
+    max-width: 390px;
+  }
+
+  .release-copy h1 {
+    font-size: 62px;
+  }
+
+  .track-head,
+  .track-row {
+    grid-template-columns: 38px 1fr 55px;
+  }
+
+  .track-head > span:nth-child(3),
+  .track-row > span:nth-child(3) {
+    display: none;
+  }
+
+  .track-head > span:last-child,
+  .track-row > span:last-child {
+    text-align: right;
+  }
+
+  .listening-notes blockquote {
+    font-size: 34px;
+  }
+
+  .related-visual {
+    height: 420px;
+  }
+
+  .related-visual h2 {
+    font-size: 55px;
+  }
+
+  /* SHELL */
+  .bottom-player {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .dock {
+    gap: 13vw;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+
+  .install-button {
+    padding: 6px 9px;
+  }
+
+  .signal {
+    font-size: 9px;
+  }
+}

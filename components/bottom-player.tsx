@@ -1,20 +1,55 @@
 "use client";
 
 import Image from "next/image";
-import { PauseIcon, PlayIcon } from "@/components/icons";
+import Link from "next/link";
+import { PauseIcon, PlayIcon, SpinnerIcon } from "@/components/icons";
 import { formatTime } from "@/lib/catalog";
 import { usePlayer } from "@/components/player-provider";
 
 export function BottomPlayer() {
-  const { track, playing, toggle, currentTime, duration, seek, progress } = usePlayer();
+  const { track, status, playing, toggle, currentTime, duration, seek, setScrubbing, progress, error } =
+    usePlayer();
+
+  const loading = status === "loading";
+  const label = playing ? "Pausa" : "Riproduci";
+
   return (
     <aside className="bottom-player" aria-label="Player audio">
       <div className="player-progress" style={{ "--progress": `${progress * 100}%` } as React.CSSProperties}>
-        <input aria-label="Posizione brano" type="range" min="0" max={duration || track.duration} step="0.1" value={currentTime} onChange={(e) => seek(Number(e.target.value))}/>
+        <input
+          type="range"
+          aria-label="Posizione brano"
+          min={0}
+          max={duration || track.duration}
+          step={0.1}
+          value={currentTime}
+          onChange={(event) => seek(Number(event.target.value))}
+          onPointerDown={() => setScrubbing(true)}
+          onPointerUp={() => setScrubbing(false)}
+          onPointerCancel={() => setScrubbing(false)}
+          onKeyDown={() => setScrubbing(true)}
+          onKeyUp={() => setScrubbing(false)}
+        />
       </div>
-      <Image src={track.cover} alt="" width={48} height={48}/>
-      <div className="player-copy"><strong>{track.title}</strong><span>{formatTime(currentTime)} / {formatTime(duration)}</span></div>
-      <button className="round-control" onClick={toggle} aria-label={playing ? "Pausa" : "Riproduci"}>{playing ? <PauseIcon/> : <PlayIcon/>}</button>
+
+      <Image src={track.cover} alt="" width={48} height={48} />
+
+      <Link href="/listen" className="player-copy">
+        <strong>{track.title}</strong>
+        <span>
+          {error ? error : `${formatTime(currentTime)} / ${formatTime(duration)}`}
+        </span>
+      </Link>
+
+      <button
+        type="button"
+        className="round-control"
+        onClick={toggle}
+        aria-label={label}
+        aria-busy={loading}
+      >
+        {loading ? <SpinnerIcon /> : playing ? <PauseIcon /> : <PlayIcon />}
+      </button>
     </aside>
   );
 }

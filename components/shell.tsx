@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { GridIcon, SoundIcon, WorldIcon } from "@/components/icons";
+import { GridIcon, InstallIcon, SoundIcon, WorldIcon } from "@/components/icons";
+import { useInstallPrompt, useOnline, useServiceWorker } from "@/lib/use-pwa";
 
 const navigation = [
   { href: "/social", label: "FEED", icon: GridIcon },
@@ -12,17 +13,49 @@ const navigation = [
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const online = useOnline();
+  const { canInstall, install } = useInstallPrompt();
+
+  useServiceWorker();
+
   return (
     <div className="app-shell">
       <header className="topbar">
-        <Link href="/" className="brand" aria-label="NVLL CLICK home"><span>NVLL</span><b>CLICK</b></Link>
-        <div className="signal"><i /> SYSTEM ONLINE</div>
+        <Link href="/" className="brand" aria-label="NVLL CLICK home">
+          <span>NVLL</span>
+          <b>CLICK</b>
+        </Link>
+
+        <div className="topbar-end">
+          {canInstall && (
+            <button type="button" className="install-button" onClick={install}>
+              <InstallIcon width={14} height={14} />
+              INSTALLA
+            </button>
+          )}
+          <p className={online ? "signal" : "signal offline"} role="status">
+            <i />
+            {online ? "SYSTEM ONLINE" : "SYSTEM OFFLINE"}
+          </p>
+        </div>
       </header>
+
       <main>{children}</main>
+
       <nav className="dock" aria-label="Navigazione principale">
         {navigation.map(({ href, label, icon: Icon }) => {
           const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
-          return <Link key={href} href={href} className={active ? "active" : ""}><Icon/><span>{label}</span></Link>;
+          return (
+            <Link
+              key={href}
+              href={href}
+              className={active ? "active" : ""}
+              aria-current={active ? "page" : undefined}
+            >
+              <Icon />
+              <span>{label}</span>
+            </Link>
+          );
         })}
       </nav>
     </div>

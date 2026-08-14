@@ -1,0 +1,165 @@
+/* Barra superiore, dock di navigazione, stati di sistema. */
+
+.app-shell main {
+  min-height: 100dvh;
+  padding-top: calc(var(--topbar-h) + var(--safe-top));
+  padding-bottom: calc(var(--player-h) + var(--dock-h) + var(--safe-bottom) + 12px);
+}
+
+.topbar {
+  position: fixed;
+  z-index: 30;
+  inset: 0 0 auto;
+  height: calc(var(--topbar-h) + var(--safe-top));
+  padding: var(--safe-top) clamp(18px, 4vw, 52px) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: rgba(7, 8, 6, 0.88);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+}
+
+.brand {
+  font-size: 18px;
+  letter-spacing: -0.08em;
+}
+
+.brand span {
+  font-weight: 300;
+}
+
+.brand b {
+  font-weight: 900;
+  margin-left: 3px;
+}
+
+.topbar-end {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.install-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border: 1px solid var(--acid);
+  background: transparent;
+  color: var(--acid);
+  font: 9px var(--mono);
+  letter-spacing: 0.14em;
+  cursor: pointer;
+}
+
+.install-button:hover {
+  background: var(--acid);
+  color: var(--ink);
+}
+
+.signal {
+  margin: 0;
+  font: 10px var(--mono);
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.signal i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--acid);
+  box-shadow: 0 0 9px var(--acid);
+}
+
+.signal.offline i {
+  background: #6b6e66;
+  box-shadow: none;
+}
+
+.dock {
+  position: fixed;
+  z-index: 35;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--dock-h) + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+  display: flex;
+  justify-content: center;
+  gap: clamp(32px, 10vw, 120px);
+  background: rgba(7, 8, 6, 0.94);
+  border-top: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+}
+
+.dock a {
+  min-width: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #6f716b;
+  font: 9px var(--mono);
+  letter-spacing: 0.13em;
+}
+
+.dock a.active {
+  color: var(--paper);
+}
+
+.dock a.active svg {
+  color: var(--acid);
+  filter: drop-shadow(0 0 6px rgba(184, 255, 53, 0.4));
+}
+
+/* Pagine di sistema: 404, errore, offline. */
+.system-page {
+  min-height: 60dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 18px;
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+.system-page h1 {
+  font-size: clamp(48px, 9vw, 108px);
+  line-height: 0.8;
+  letter-spacing: -0.08em;
+  margin: 0;
+}
+
+.system-page p {
+  max-width: 520px;
+  color: #a7a9a1;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.system-page .digest {
+  font: 9px var(--mono);
+  color: var(--muted);
+}
+
+.system-page .primary-cta {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 70px 0 90px;
+  max-width: 520px;
+  color: var(--muted);
+  font: 11px/1.9 var(--mono);
+  letter-spacing: 0.06em;
+}
