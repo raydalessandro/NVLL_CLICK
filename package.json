@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "icons": "node scripts/make-icons.mjs",
-    "check": "npm run typecheck && npm run lint && npm run build"
+    "check:media": "node scripts/check-media.mjs",
+    "test:e2e": "next build && playwright test",
+    "check": "npm run typecheck && npm run lint && npm run check:media && npm run build"
   },
   "dependencies": {
     "next": "^16.0.0",
@@ -17,6 +19,8 @@
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.62.1",
     "@types/node": "^24.0.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",

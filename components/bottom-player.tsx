@@ -2,16 +2,21 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { PauseIcon, PlayIcon, SpinnerIcon } from "@/components/icons";
 import { formatTime } from "@/lib/catalog";
 import { usePlayer } from "@/components/player-provider";
 
 export function BottomPlayer() {
+  const pathname = usePathname();
   const { track, status, playing, toggle, currentTime, duration, seek, setScrubbing, progress, error } =
     usePlayer();
 
   const loading = status === "loading";
   const label = playing ? "Pausa" : "Riproduci";
+
+  // Dentro il gioco i comandi audio stanno nella Sound Room.
+  if (pathname.startsWith("/game")) return null;
 
   return (
     <aside className="bottom-player" aria-label="Player audio">

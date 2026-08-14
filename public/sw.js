@@ -11,7 +11,7 @@
  * Alzare VERSION invalida tutte le cache precedenti.
  */
 
-const VERSION = "nvll-v3";
+const VERSION = "nvll-v4";
 const SHELL_CACHE = `${VERSION}-shell`;
 const ASSET_CACHE = `${VERSION}-assets`;
 
@@ -111,7 +111,17 @@ async function networkFirst(request, cacheName) {
   } catch (error) {
     const cached = await cache.match(request);
     if (cached) return cached;
+
     if (request.mode === "navigate") {
+      /*
+       * Si reindirizza invece di servire /offline sotto l'URL richiesto:
+       * l'App Router confronta URL e contenuto durante l'idratazione e
+       * sostituirebbe la pagina con il 404, dicendo "non esiste" a chi in
+       * realtà è soltanto senza rete.
+       */
+      if (new URL(request.url).pathname !== OFFLINE_URL) {
+        return Response.redirect(new URL(OFFLINE_URL, self.location.origin).href, 302);
+      }
       const offline = await cache.match(OFFLINE_URL);
       if (offline) return offline;
     }

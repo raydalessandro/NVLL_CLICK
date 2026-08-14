@@ -125,6 +125,41 @@
   color: var(--paper);
 }
 
+/*
+ * Tasto centrale verso WORLD 00: sporge sopra il dock, quindi la barra
+ * mantiene lo spazio con un padding invece di far crescere il contenitore.
+ */
+.dock-core {
+  position: relative;
+  align-self: center;
+  width: 52px;
+  height: 52px;
+  min-width: 0;
+  margin: 0 clamp(4px, 2vw, 18px);
+  border-radius: 50%;
+  border: 1px solid var(--acid);
+  background: var(--ink);
+  color: var(--acid);
+  transform: translateY(-15px);
+  box-shadow: 0 0 0 5px var(--ink), 0 6px 18px rgba(0, 0, 0, 0.6);
+  gap: 0;
+}
+
+.dock-core span {
+  position: absolute;
+  bottom: -13px;
+  font: 7px var(--mono);
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  white-space: nowrap;
+}
+
+.dock-core:hover,
+.dock-core.active {
+  background: var(--acid);
+  color: var(--ink);
+}
+
 .dock a.active svg {
   color: var(--acid);
   filter: drop-shadow(0 0 6px rgba(184, 255, 53, 0.4));
