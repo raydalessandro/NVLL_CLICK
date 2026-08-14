@@ -160,3 +160,21 @@ test.describe("merch", () => {
     await expect(page.locator("body")).not.toContainText("€");
   });
 });
+
+test.describe("metadati", () => {
+  // Il layout radice compone i titoli con il template `%s — NVLL CLICK`:
+  // se una pagina aggiunge il brand a mano, il nome compare due volte.
+  const TITLES: [string, string][] = [
+    ["/", "NVLL CLICK — Identità in ascolto"],
+    ["/merch", "Merch — NVLL CLICK"],
+    ["/game", "WORLD 00 — NVLL CLICK"],
+    ["/offline", "Fuori rete — NVLL CLICK"],
+  ];
+
+  for (const [route, title] of TITLES) {
+    test(`il titolo di ${route} nomina il brand una volta sola`, async ({ page }) => {
+      await page.goto(route);
+      await expect(page).toHaveTitle(title);
+    });
+  }
+});

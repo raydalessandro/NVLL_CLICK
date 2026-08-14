@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Fuori rete — NVLL CLICK",
+  title: "Fuori rete",
   robots: { index: false },
 };
 
